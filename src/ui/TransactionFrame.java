@@ -61,17 +61,17 @@ public class TransactionFrame extends javax.swing.JFrame {
         txtdate = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtdescription = new javax.swing.JTextField();
         lbldate = new javax.swing.JLabel();
         lbldescription = new javax.swing.JLabel();
         lblmontant = new javax.swing.JLabel();
         lbltype = new javax.swing.JLabel();
         txtmontant = new javax.swing.JTextField();
-        boxtype = new javax.swing.JComboBox<>();
+        boxdescription = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         btnajouter = new javax.swing.JButton();
         btnannuler = new javax.swing.JButton();
         btnretour = new javax.swing.JButton();
+        boxtype1 = new javax.swing.JComboBox<>();
 
         jMenu1.setText("jMenu1");
 
@@ -132,9 +132,9 @@ public class TransactionFrame extends javax.swing.JFrame {
         lbltype.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbltype.setText("Type de transaction  : ");
 
-        boxtype.setEditable(true);
-        boxtype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Depot", "Paiement " }));
-        boxtype.addActionListener(this::boxtypeActionPerformed);
+        boxdescription.setEditable(true);
+        boxdescription.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HydroQuebec", "Telephone Bell ", "Epecerie", "Loyer", "Transport ", "SAAQ", " " }));
+        boxdescription.addActionListener(this::boxdescriptionActionPerformed);
 
         jPanel4.setBackground(new java.awt.Color(199, 232, 205));
 
@@ -176,6 +176,10 @@ public class TransactionFrame extends javax.swing.JFrame {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
+        boxtype1.setEditable(true);
+        boxtype1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Depot", "Paiement " }));
+        boxtype1.addActionListener(this::boxtype1ActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -188,17 +192,20 @@ public class TransactionFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbldate, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbldescription, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblmontant, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtmontant, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtmontant, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(lbltype, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boxtype, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbltype, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 93, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(283, Short.MAX_VALUE)
+                    .addComponent(boxtype1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(152, 152, 152)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,18 +217,21 @@ public class TransactionFrame extends javax.swing.JFrame {
                 .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbldescription)
-                .addGap(12, 12, 12)
-                .addComponent(txtdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(boxdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addComponent(lblmontant)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtmontant, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbltype)
-                    .addComponent(boxtype, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(lbltype)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(332, Short.MAX_VALUE)
+                    .addComponent(boxtype1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(110, 110, 110)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -249,25 +259,25 @@ public class TransactionFrame extends javax.swing.JFrame {
          this.setVisible(false);
     }//GEN-LAST:event_btnretourActionPerformed
 
-    private void boxtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxtypeActionPerformed
+    private void boxdescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxdescriptionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_boxtypeActionPerformed
+    }//GEN-LAST:event_boxdescriptionActionPerformed
 
     private void btnajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnajouterActionPerformed
         // TODO add your handling code here:
         try {
         // Récupérer les valeurs
         String date = txtdate.getText();
-        String description = txtdescription.getText();
+        String description = (String) boxdescription.getSelectedItem();
         double montant = Double.parseDouble(txtmontant.getText());
-        String type = (String) boxtype.getSelectedItem();
+        String type = (String) boxdescription.getSelectedItem();
 
         // Créer l'objet Transaction
         Transaction t = new Transaction();
         t.setDate(date);
         t.setDescription(description);
         t.setMontant(montant);
-        t.setTypeTransaction(type);
+        t.setType(type);
 
         // Ajouter dans le registre
       //  lisitng.ajouter(t);
@@ -282,9 +292,9 @@ public class TransactionFrame extends javax.swing.JFrame {
 
         // Vider les champs
         txtdate.setText("");
-        txtdescription.setText("");
+        boxdescription.setSelectedIndex(0);
         txtmontant.setText("");
-        boxtype.setSelectedIndex(0);
+        boxdescription.setSelectedIndex(0);
 
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, 
@@ -292,6 +302,10 @@ public class TransactionFrame extends javax.swing.JFrame {
             JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnajouterActionPerformed
+
+    private void boxtype1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxtype1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxtype1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,7 +333,8 @@ public class TransactionFrame extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> boxtype;
+    private javax.swing.JComboBox<String> boxdescription;
+    private javax.swing.JComboBox<String> boxtype1;
     private javax.swing.JButton btnajouter;
     private javax.swing.JButton btnannuler;
     private javax.swing.JButton btnretour;
@@ -338,7 +353,6 @@ public class TransactionFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblmontant;
     private javax.swing.JLabel lbltype;
     private javax.swing.JTextField txtdate;
-    private javax.swing.JTextField txtdescription;
     private javax.swing.JTextField txtmontant;
     // End of variables declaration//GEN-END:variables
 }

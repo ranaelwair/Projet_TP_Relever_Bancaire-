@@ -43,7 +43,7 @@ public class Transaction {
         this.montant = montant;
     }
 
-    public void setTypeTransaction(String typeTransaction) {
+    public void setType(String type) {
         this.type = type;
     }
     
