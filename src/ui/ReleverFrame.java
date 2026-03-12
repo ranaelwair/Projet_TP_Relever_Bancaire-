@@ -29,55 +29,12 @@ public class ReleverFrame extends javax.swing.JFrame {
      */
     
     
-  /*   Color BG = Color.decode("#E3F2FD");
-    Color PANEL = Color.decode("#C8E6C9");
-    Color BUTTON = Color.decode("#90CAF9");*/
+  
     public ReleverFrame(RegistreTransaction listing) {
         initComponents();
         
         setTitle("Relevé Bancaire");
-       /* setSize(1000,800);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JPanel main = new JPanel(new BorderLayout());
-        main.setBackground(BG);
-
-        // Header
-        JLabel titre = new JLabel("Relevé Bancaire");
-        titre.setFont(new Font("Segoe UI",Font.BOLD,22));
-        titre.setHorizontalAlignment(SwingConstants.CENTER);
-
-        JPanel header = new JPanel();
-        header.setBackground(PANEL);
-        header.add(titre);
-
-        // Table
-        String[] colonnes = {"Date","Description","Dépôt","Retrait","Solde"};
-
-        Object[][] data = {
-            {"01/03/2026","Salaire",2000,"","3500"},
-            {"02/03/2026","Épicerie","","120","3380"}
-        };
-
-        JTable table = new JTable(data, colonnes);
-        JScrollPane scroll = new JScrollPane(table);
-
-        // Bas
-        JPanel bas = new JPanel();
-        bas.setBackground(PANEL);
-
-        bas.add(new JLabel("Total dépôts : 2000$"));
-        bas.add(new JLabel("Total retraits : 120$"));
-        bas.add(new JLabel("Solde : 3380$"));
-
-       main.add(header,BorderLayout.NORTH);
-         main.add(scroll,BorderLayout.CENTER);
-         main.add(bas,BorderLayout.SOUTH);
-
-      setContentPane(main);   // au lieu de add(main)
-     revalidate();
-       repaint();*/
+      
     }
 
    
@@ -92,44 +49,43 @@ public class ReleverFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnretour = new javax.swing.JButton();
-        cbMois = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        panel = new javax.swing.JPanel();
+        lblDescription = new javax.swing.JLabel();
         lblMois = new javax.swing.JLabel();
+        cbMois = new javax.swing.JComboBox<>();
+        cbDescription = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         cbAnnee = new javax.swing.JComboBox<>();
-        lblDescription = new javax.swing.JLabel();
-        cbDescription = new javax.swing.JComboBox<>();
-        btnTelecharger = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btnAfficher = new javax.swing.JButton();
+        btnTelecharger = new javax.swing.JButton();
+        btnretour = new javax.swing.JButton();
+
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnretour.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnretour.setText("Retour");
-        btnretour.addActionListener(this::btnretourActionPerformed);
+        panel.setBackground(new java.awt.Color(221, 255, 252));
+
+        lblDescription.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDescription.setText("Transaction : ");
+
+        lblMois.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMois.setText("Mois : ");
 
         cbMois.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cbMois.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" }));
 
-        lblMois.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblMois.setText("Mois : ");
+        cbDescription.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cbDescription.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HydroQuebec", "Telephone Bell", "Epecerie", "Loyer", "Transport", "SAAQ", "" }));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Année :");
 
         cbAnnee.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cbAnnee.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2026", "2025", "2024", "2023", "2022", "2021", "2020" }));
-
-        lblDescription.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblDescription.setText("Déscription : ");
-
-        cbDescription.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cbDescription.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HydroQuebec", "Telephone Bell", "Epecerie", "Loyer", "Transport", "SAAQ", "" }));
-
-        btnTelecharger.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnTelecharger.setText("Télécharger PDF");
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -139,74 +95,98 @@ public class ReleverFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(190, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addGap(104, 104, 104))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
         btnAfficher.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAfficher.setText("Afficher");
+
+        btnTelecharger.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTelecharger.setText("Télécharger PDF");
+
+        btnretour.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnretour.setText("Retour");
+        btnretour.addActionListener(this::btnretourActionPerformed);
+
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDescription)
+                    .addComponent(lblMois, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbMois, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(btnAfficher)
+                        .addGap(116, 116, 116)
+                        .addComponent(btnTelecharger)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnretour))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addContainerGap(28, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23))
+        );
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDescription)
+                    .addComponent(cbDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMois, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbMois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAfficher)
+                    .addComponent(btnTelecharger)
+                    .addComponent(btnretour))
+                .addGap(22, 22, 22))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAfficher)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTelecharger)
-                        .addGap(89, 89, 89)
-                        .addComponent(btnretour))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblMois, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(133, 133, 133)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(cbMois, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblDescription)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDescription)
-                    .addComponent(cbDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbMois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMois, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(cbAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnretour)
-                    .addComponent(btnTelecharger)
-                    .addComponent(btnAfficher))
-                .addGap(34, 34, 34))
+                .addContainerGap()
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -252,8 +232,10 @@ public class ReleverFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbMois;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblMois;
+    private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }
