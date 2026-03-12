@@ -57,8 +57,8 @@ public class TransactionFrame extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jPanel3 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
-        txtdate = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lbldate = new javax.swing.JLabel();
@@ -71,7 +71,10 @@ public class TransactionFrame extends javax.swing.JFrame {
         btnajouter = new javax.swing.JButton();
         btnannuler = new javax.swing.JButton();
         btnretour = new javax.swing.JButton();
-        boxtype1 = new javax.swing.JComboBox<>();
+        boxtype = new javax.swing.JComboBox<>();
+        boxdate1 = new javax.swing.JComboBox<>();
+        boxdate2 = new javax.swing.JComboBox<>();
+        boxdate3 = new javax.swing.JComboBox<>();
 
         jMenu1.setText("jMenu1");
 
@@ -176,9 +179,17 @@ public class TransactionFrame extends javax.swing.JFrame {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        boxtype1.setEditable(true);
-        boxtype1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Depot", "Paiement " }));
-        boxtype1.addActionListener(this::boxtype1ActionPerformed);
+        boxtype.setEditable(true);
+        boxtype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Depot", "Paiement " }));
+        boxtype.addActionListener(this::boxtypeActionPerformed);
+
+        boxdate1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        boxdate2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "janvier", " ", "février", " ", "mars", " ", "avril", " ", "mai", " ", "juin", " ", "juillet", " ", "août", " ", "septembre", " ", "octobre", " ", "novembre", " ", "décembre", " ", " " }));
+        boxdate2.addActionListener(this::boxdate2ActionPerformed);
+
+        boxdate3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2026" }));
+        boxdate3.addActionListener(this::boxdate3ActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,21 +202,23 @@ public class TransactionFrame extends javax.swing.JFrame {
                         .addGap(81, 81, 81)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbldate, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbldescription, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblmontant, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtmontant, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(boxdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(boxdate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(boxdate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boxdate3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(lbltype, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbltype, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(boxtype, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 93, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(283, Short.MAX_VALUE)
-                    .addComponent(boxtype1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(152, 152, 152)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,8 +227,11 @@ public class TransactionFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lbldate, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxdate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxdate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxdate3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addComponent(lbldescription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(boxdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,15 +239,12 @@ public class TransactionFrame extends javax.swing.JFrame {
                 .addComponent(lblmontant)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtmontant, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(lbltype)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbltype)
+                    .addComponent(boxtype, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(332, Short.MAX_VALUE)
-                    .addComponent(boxtype1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(110, 110, 110)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -266,46 +279,57 @@ public class TransactionFrame extends javax.swing.JFrame {
     private void btnajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnajouterActionPerformed
         // TODO add your handling code here:
         try {
-        // Récupérer les valeurs
-        String date = txtdate.getText();
-        String description = (String) boxdescription.getSelectedItem();
-        double montant = Double.parseDouble(txtmontant.getText());
-        String type = (String) boxdescription.getSelectedItem();
+        // ✅ Date complète : jour/mois/annee
+        int jour = Integer.parseInt((String) boxdate1.getSelectedItem());
+          String mois = (String) boxdate2.getSelectedItem();
+       
+        int annee = Integer.parseInt((String) boxdate3.getSelectedItem());
+        
+        String date = jour + "/" + mois + "/" + annee; 
 
-        // Créer l'objet Transaction
+        String description = (String) boxdescription.getSelectedItem();
+        double montant = Double.parseDouble(txtmontant.getText().trim());
+        String type = (String) boxtype.getSelectedItem();  // Séparé de description !
+
+        // Créer Transaction
         Transaction t = new Transaction();
         t.setDate(date);
         t.setDescription(description);
         t.setMontant(montant);
         t.setType(type);
 
-        // Ajouter dans le registre
-      //  lisitng.ajouter(t);
-
-        // ✅ Plus besoin de this.lisitng — getInstance() toujours disponible
+        // Ajouter et sauvegarder
         RegistreTransaction.getInstance().ajouter(t);
         ManipFichier.sauvegarder(RegistreTransaction.getInstance().getRegistre());
 
-        JOptionPane.showMessageDialog(null, 
-            "Transaction ajoutée avec succès !", 
-            "Succès", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Transaction ajoutée : " + date, "Succès", JOptionPane.INFORMATION_MESSAGE);
 
-        // Vider les champs
-        txtdate.setText("");
+        // ✅ Reset CORRECT (pas txtdate qui n'existe pas)
+        boxdate1.setSelectedIndex(0);
+        boxdate2.setSelectedIndex(0);
+        boxdate3.setSelectedIndex(0);
         boxdescription.setSelectedIndex(0);
+        if (boxtype != null) boxtype.setSelectedIndex(0);
         txtmontant.setText("");
-        boxdescription.setSelectedIndex(0);
+        txtmontant.requestFocus();
 
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, 
-            "Saisie erronée", "Echec d'ajout", 
-            JOptionPane.ERROR_MESSAGE);
+    } catch (NumberFormatException | NullPointerException e) {
+        JOptionPane.showMessageDialog(this, "Vérifiez : jour/année (nombres), montant valide, tous champs remplis !", "Erreur saisie", JOptionPane.ERROR_MESSAGE);
+        txtmontant.requestFocus();
     }
     }//GEN-LAST:event_btnajouterActionPerformed
 
-    private void boxtype1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxtype1ActionPerformed
+    private void boxtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxtypeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_boxtype1ActionPerformed
+    }//GEN-LAST:event_boxtypeActionPerformed
+
+    private void boxdate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxdate2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxdate2ActionPerformed
+
+    private void boxdate3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxdate3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxdate3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,8 +357,11 @@ public class TransactionFrame extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxdate1;
+    private javax.swing.JComboBox<String> boxdate2;
+    private javax.swing.JComboBox<String> boxdate3;
     private javax.swing.JComboBox<String> boxdescription;
-    private javax.swing.JComboBox<String> boxtype1;
+    private javax.swing.JComboBox<String> boxtype;
     private javax.swing.JButton btnajouter;
     private javax.swing.JButton btnannuler;
     private javax.swing.JButton btnretour;
@@ -348,11 +375,16 @@ public class TransactionFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbldate;
     private javax.swing.JLabel lbldescription;
     private javax.swing.JLabel lblmontant;
     private javax.swing.JLabel lbltype;
-    private javax.swing.JTextField txtdate;
     private javax.swing.JTextField txtmontant;
     // End of variables declaration//GEN-END:variables
+
+   
+
+   
+
 }

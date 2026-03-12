@@ -10,26 +10,42 @@ package modele;
  * @author ranae
  */
 public class Transaction {
-    private String date;
+    private String date, mois;
     private String description;
     private double montant;
+    private int annee, jour;
     private String type;
 
     public Transaction() {
     }
     
-
-    public Transaction(String date, String description, double montant, String type) {
+    public Transaction(String date, String description, double montant, String mois, int annee, int jour, String type) {
         this.date = date;
         this.description = description;
         this.montant = montant;
+        this.mois = mois;
+        this.annee = annee;
+        this.jour = jour;
         this.type = type;
     }
-
+    
     public String getDate() { return date; }
     public String getDescription() { return description; }
     public double getMontant() { return montant; }
     public String getType() { return type; }
+
+    public String getMois() {
+        return mois;
+    }
+
+    public int getAnnee() {
+        return annee;
+    }
+
+    public int getJour() {
+        return jour;
+    }
+    
 
     public void setDate(String date) {
         this.date = date;
@@ -46,13 +62,26 @@ public class Transaction {
     public void setType(String type) {
         this.type = type;
     }
-    
-    
-    
-    
+
+    public void setMois(String mois) {
+        this.mois = mois;
+    }
+
+    public void setAnnee(int annee) {
+        this.annee = annee;
+    }
+
+    public void setJour(int jour) {
+        this.jour = jour;
+    }
+
     @Override
     public String toString() {
-        return date + " | " + description + " | " + montant + " DH | " + type;
+        return "Transaction{" + "date=" + date + ", description=" + description + ", montant=" + montant + ", mois=" + mois + ", annee=" + annee + ", jour=" + jour + ", type=" + type + '}';
     }
+    
+    
+    
+    
     
 }
