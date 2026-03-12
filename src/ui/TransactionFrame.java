@@ -4,6 +4,7 @@
  */
 package ui;
 
+import io.ManipFichier;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -12,10 +13,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import modele.RegistreTransaction;
+import modele.Transaction;
 
 /**
  *
@@ -35,60 +38,8 @@ public class TransactionFrame extends javax.swing.JFrame {
     public TransactionFrame(RegistreTransaction listing) {
         initComponents();
          setTitle("Transaction");
-     /*   setSize(800,400);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        JPanel main = new JPanel(new BorderLayout());
-        main.setBackground(BG);
-
-        // HEADER
-        JLabel titre = new JLabel("Nouvelle Transaction");
-        titre.setFont(new Font("Segoe UI",Font.BOLD,20));
-        titre.setHorizontalAlignment(SwingConstants.CENTER);
-
-        JPanel header = new JPanel();
-        header.setBackground(PANEL);
-        header.add(titre);
-
-        // FORMULAIRE
-        JPanel form = new JPanel(new GridLayout(4,2,10,10));
-        form.setBackground(BG);
-
-        JTextField txtDate = new JTextField();
-        JTextField txtDescription = new JTextField();
-        JTextField txtMontant = new JTextField();
-
-        String[] types = {"Dépôt","Retrait"};
-        JComboBox<String> comboType = new JComboBox<>(types);
-
-        form.add(new JLabel("Date :"));
-        form.add(txtDate);
-
-        form.add(new JLabel("Description :"));
-        form.add(txtDescription);
-
-        form.add(new JLabel("Montant :"));
-        form.add(txtMontant);
-
-        form.add(new JLabel("Type :"));
-        form.add(comboType);
-
-        // BOUTONS
-        JPanel boutons = new JPanel();
-        boutons.setBackground(PANEL);
-
-        JButton btnAjouter = new JButton("Ajouter");
-        JButton btnAnnuler = new JButton("Annuler");
-
-        boutons.add(btnAjouter);
-        boutons.add(btnAnnuler);
-
-        main.add(header,BorderLayout.NORTH);
-        main.add(form,BorderLayout.CENTER);
-        main.add(boutons,BorderLayout.SOUTH);
-
-        setContentPane(main);*/
+           this.lisitng = listing; 
+    
     }
 
     /**
@@ -190,6 +141,7 @@ public class TransactionFrame extends javax.swing.JFrame {
         btnajouter.setBackground(new java.awt.Color(135, 203, 222));
         btnajouter.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnajouter.setText("Ajouter");
+        btnajouter.addActionListener(this::btnajouterActionPerformed);
 
         btnannuler.setBackground(new java.awt.Color(135, 203, 222));
         btnannuler.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -300,6 +252,46 @@ public class TransactionFrame extends javax.swing.JFrame {
     private void boxtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxtypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxtypeActionPerformed
+
+    private void btnajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnajouterActionPerformed
+        // TODO add your handling code here:
+        try {
+        // Récupérer les valeurs
+        String date = txtdate.getText();
+        String description = txtdescription.getText();
+        double montant = Double.parseDouble(txtmontant.getText());
+        String type = (String) boxtype.getSelectedItem();
+
+        // Créer l'objet Transaction
+        Transaction t = new Transaction();
+        t.setDate(date);
+        t.setDescription(description);
+        t.setMontant(montant);
+        t.setTypeTransaction(type);
+
+        // Ajouter dans le registre
+      //  lisitng.ajouter(t);
+
+        // ✅ Plus besoin de this.lisitng — getInstance() toujours disponible
+        RegistreTransaction.getInstance().ajouter(t);
+        ManipFichier.sauvegarder(RegistreTransaction.getInstance().getRegistre());
+
+        JOptionPane.showMessageDialog(null, 
+            "Transaction ajoutée avec succès !", 
+            "Succès", JOptionPane.INFORMATION_MESSAGE);
+
+        // Vider les champs
+        txtdate.setText("");
+        txtdescription.setText("");
+        txtmontant.setText("");
+        boxtype.setSelectedIndex(0);
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, 
+            "Saisie erronée", "Echec d'ajout", 
+            JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnajouterActionPerformed
 
     /**
      * @param args the command line arguments

@@ -11,13 +11,17 @@ import java.util.ArrayList;
  * @author ranae
  */
 public class RegistreTransaction {
-      private ArrayList<Transaction> registre;
+    private ArrayList<Transaction> registre;
     
-    public RegistreTransaction(){
-       registre = new ArrayList<>();
+    private static RegistreTransaction instance = new RegistreTransaction();
+      public static RegistreTransaction getInstance() {
+        return instance;
+    }
+    public RegistreTransaction() {
+        registre = new ArrayList<>();
     }
 
-    public ArrayList <Transaction> getRegistre() {
+    public ArrayList<Transaction> getRegistre() {
         return registre;
     }
 
@@ -25,7 +29,7 @@ public class RegistreTransaction {
         this.registre = registre;
     }
 
-    public void ajouter(Transaction T) {
-        registre.add(T);
+    public void ajouter(Transaction t) {
+        registre.add(t);
     }
 }
