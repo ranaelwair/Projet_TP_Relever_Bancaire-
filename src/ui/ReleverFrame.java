@@ -59,6 +59,7 @@ public class ReleverFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        btnsauvgarder = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btnretour = new javax.swing.JButton();
         lblsolde2 = new javax.swing.JLabel();
@@ -159,6 +160,11 @@ public class ReleverFrame extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        btnsauvgarder.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnsauvgarder.setForeground(new java.awt.Color(0, 51, 204));
+        btnsauvgarder.setText("Sauvgarder");
+        btnsauvgarder.addActionListener(this::btnsauvgarderActionPerformed);
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -178,14 +184,19 @@ public class ReleverFrame extends javax.swing.JFrame {
                                 .addGap(264, 264, 264))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                                 .addComponent(btnTelecharger)
-                                .addGap(24, 24, 24))))))
+                                .addGap(22, 22, 22))))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(btnsauvgarder, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(btnTelecharger)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTelecharger)
+                    .addComponent(btnsauvgarder))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,6 +266,10 @@ public class ReleverFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnretourActionPerformed
 
+    private void btnsauvgarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsauvgarderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsauvgarderActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -283,6 +298,7 @@ public class ReleverFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTelecharger;
     private javax.swing.JButton btnretour;
+    private javax.swing.JButton btnsauvgarder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
