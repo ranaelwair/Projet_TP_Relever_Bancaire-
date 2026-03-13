@@ -31,12 +31,26 @@ public class CategorieFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         btnretour = new javax.swing.JButton();
+        lblcategorie = new javax.swing.JLabel();
+        lbldescription = new javax.swing.JLabel();
+        boxdescription = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnretour.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnretour.setText("Retour");
         btnretour.addActionListener(this::btnretourActionPerformed);
+
+        lblcategorie.setFont(new java.awt.Font("Segoe Print", 1, 36)); // NOI18N
+        lblcategorie.setForeground(new java.awt.Color(0, 0, 153));
+        lblcategorie.setText("categorisation des transaction");
+
+        lbldescription.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbldescription.setText("Description :");
+
+        boxdescription.setEditable(true);
+        boxdescription.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HydroQuebec", "Telephone Bell ", "Epecerie", "Loyer", "Transport ", "SAAQ", " " }));
+        boxdescription.addActionListener(this::boxdescriptionActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -46,11 +60,28 @@ public class CategorieFrame extends javax.swing.JFrame {
                 .addContainerGap(639, Short.MAX_VALUE)
                 .addComponent(btnretour)
                 .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(lblcategorie))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(lbldescription, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(boxdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(486, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(lblcategorie)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbldescription)
+                    .addComponent(boxdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
                 .addComponent(btnretour)
                 .addGap(22, 22, 22))
         );
@@ -63,6 +94,10 @@ public class CategorieFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
          this.setVisible(false);
     }//GEN-LAST:event_btnretourActionPerformed
+
+    private void boxdescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxdescriptionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxdescriptionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,6 +125,9 @@ public class CategorieFrame extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxdescription;
     private javax.swing.JButton btnretour;
+    private javax.swing.JLabel lblcategorie;
+    private javax.swing.JLabel lbldescription;
     // End of variables declaration//GEN-END:variables
 }
