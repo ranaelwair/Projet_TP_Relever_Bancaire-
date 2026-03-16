@@ -14,9 +14,9 @@ public class RegistreTransaction {
     private ArrayList<Transaction> registre;
     
     private static RegistreTransaction instance = new RegistreTransaction();
-      public static RegistreTransaction getInstance() {
-        return instance;
-    }
+     public static RegistreTransaction getInstance() {
+       return instance;
+   }
     public RegistreTransaction() {
         registre = new ArrayList<>();
     }

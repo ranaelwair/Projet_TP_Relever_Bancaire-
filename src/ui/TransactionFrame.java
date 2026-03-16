@@ -25,7 +25,7 @@ import modele.Transaction;
  * @author ranae
  */
 public class TransactionFrame extends javax.swing.JFrame {
-    private RegistreTransaction lisitng;
+    private RegistreTransaction listing;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TransactionFrame.class.getName());
 
@@ -38,7 +38,7 @@ public class TransactionFrame extends javax.swing.JFrame {
     public TransactionFrame(RegistreTransaction listing) {
         initComponents();
          setTitle("Transaction");
-           this.lisitng = listing; 
+           this.listing = listing; 
     
     }
 
@@ -151,6 +151,7 @@ public class TransactionFrame extends javax.swing.JFrame {
         btnannuler.setBackground(new java.awt.Color(135, 203, 222));
         btnannuler.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnannuler.setText("Annuler");
+        btnannuler.addActionListener(this::btnannulerActionPerformed);
 
         btnretour.setBackground(new java.awt.Color(135, 203, 222));
         btnretour.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -276,7 +277,7 @@ public class TransactionFrame extends javax.swing.JFrame {
     private void btnajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnajouterActionPerformed
         // TODO add your handling code here:
         try {
-        // ✅ Date complète : jour/mois/annee
+       
         int jour = Integer.parseInt((String) boxdate1.getSelectedItem());
           String mois = (String) boxdate2.getSelectedItem();
        
@@ -296,12 +297,12 @@ public class TransactionFrame extends javax.swing.JFrame {
         t.setType(type);
 
         // Ajouter et sauvegarder
-        RegistreTransaction.getInstance().ajouter(t);
+       RegistreTransaction.getInstance().ajouter(t);
         ManipFichier.sauvegarder(RegistreTransaction.getInstance().getRegistre());
 
         JOptionPane.showMessageDialog(this, "Transaction ajoutée : " + date, "Succès", JOptionPane.INFORMATION_MESSAGE);
 
-        // ✅ Reset CORRECT (pas txtdate qui n'existe pas)
+        // Reset CORRECT (pas txtdate qui n'existe pas)
         boxdate1.setSelectedIndex(0);
         boxdate2.setSelectedIndex(0);
         boxdate3.setSelectedIndex(0);
@@ -327,6 +328,10 @@ public class TransactionFrame extends javax.swing.JFrame {
     private void boxdate3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxdate3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxdate3ActionPerformed
+
+    private void btnannulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnannulerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnannulerActionPerformed
 
     /**
      * @param args the command line arguments

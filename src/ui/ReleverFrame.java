@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 import modele.RegistreTransaction;
 
 /**
@@ -32,9 +33,41 @@ public class ReleverFrame extends javax.swing.JFrame {
   
     public ReleverFrame(RegistreTransaction listing) {
         initComponents();
-        
+        this.listing = listing;
+        populateTable();
+        calculateBalance();
         setTitle("Relevé Bancaire");
       
+    }
+    
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Clear existing rows
+        double runningBalance = 0.0;
+        for (modele.Transaction t : listing.getRegistre()) {
+            double depot = 0.0;
+            double retrait = 0.0;
+            if ("Depot".equals(t.getType())) {
+                depot = t.getMontant();
+                runningBalance += depot;
+            } else if ("Paiement".equals(t.getType())) {
+                retrait = t.getMontant();
+                runningBalance -= retrait;
+            }
+            model.addRow(new Object[]{t.getDate(), t.getDescription(), depot > 0 ? depot : "", retrait > 0 ? retrait : "", String.format("%.2f$", runningBalance)});
+        }
+    }
+
+    private void calculateBalance() {
+        double balance = 0.0;
+        for (modele.Transaction t : listing.getRegistre()) {
+            if ("Depot".equals(t.getType())) {
+                balance += t.getMontant();
+            } else if ("Paiement".equals(t.getType())) {
+                balance -= t.getMontant();
+            }
+        }
+        lblsolde2.setText(String.format("%.2f$", balance));
     }
 
    

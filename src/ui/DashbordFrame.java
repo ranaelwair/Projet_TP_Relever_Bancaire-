@@ -23,6 +23,7 @@ public class DashbordFrame extends javax.swing.JFrame {
    
     public DashbordFrame(RegistreTransaction listing) {
         initComponents();
+        this.listing = listing;
         setTitle("Tableau de bord");
            
                

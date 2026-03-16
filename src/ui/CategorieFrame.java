@@ -4,6 +4,7 @@
  */
 package ui;
 
+import javax.swing.table.DefaultTableModel;
 import modele.RegistreTransaction;
 
 /**
@@ -11,6 +12,8 @@ import modele.RegistreTransaction;
  * @author ranae
  */
 public class CategorieFrame extends javax.swing.JFrame {
+    private RegistreTransaction listing;
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CategorieFrame.class.getName());
 
@@ -19,8 +22,26 @@ public class CategorieFrame extends javax.swing.JFrame {
      */
     public CategorieFrame(RegistreTransaction listing) {
         initComponents();
+        this.listing = listing;
+        populateTable();
     }
-
+     private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        double runningBalance = 0.0;
+        for (modele.Transaction t : listing.getRegistre()) {
+            double depot = 0.0;
+            double retrait = 0.0;
+            if ("Depot".equals(t.getType())) {
+                depot = t.getMontant();
+                runningBalance += depot;
+            } else if ("Paiement".equals(t.getType())) {
+                retrait = t.getMontant();
+                runningBalance -= retrait;
+            }
+            model.addRow(new Object[]{t.getDate(), t.getDescription(), depot > 0 ? depot : "", retrait > 0 ? retrait : "", String.format("%.2f$", runningBalance)});
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,7 +58,7 @@ public class CategorieFrame extends javax.swing.JFrame {
         btnretour = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblcategorie = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnfiltrer = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -99,8 +120,9 @@ public class CategorieFrame extends javax.swing.JFrame {
                 .addComponent(lblcategorie))
         );
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Filtrer");
+        btnfiltrer.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnfiltrer.setText("Filtrer");
+        btnfiltrer.addActionListener(this::btnfiltrerActionPerformed);
 
         jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -146,7 +168,7 @@ public class CategorieFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(boxdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnfiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -162,7 +184,7 @@ public class CategorieFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbldescription)
-                    .addComponent(jButton1))
+                    .addComponent(btnfiltrer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,6 +218,37 @@ public class CategorieFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxdescriptionActionPerformed
 
+    private void btnfiltrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfiltrerActionPerformed
+        // TODO add your handling code here:
+         String filter = (String) boxdescription.getSelectedItem();
+        if (filter == null || filter.trim().isEmpty()) {
+            populateTable(); // Show all
+        } else {
+            filterTable(filter.trim());
+        }
+            
+    }//GEN-LAST:event_btnfiltrerActionPerformed
+    
+    
+     private void filterTable(String description) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        double runningBalance = 0.0;
+        for (modele.Transaction t : listing.getRegistre()) {
+            if (t.getDescription().toLowerCase().contains(description.toLowerCase())) {
+                double depot = 0.0;
+                double retrait = 0.0;
+                if ("Depot".equals(t.getType())) {
+                    depot = t.getMontant();
+                    runningBalance += depot;
+                } else if ("Paiement".equals(t.getType())) {
+                    retrait = t.getMontant();
+                    runningBalance -= retrait;
+                }
+                model.addRow(new Object[]{t.getDate(), t.getDescription(), depot > 0 ? depot : "", retrait > 0 ? retrait : "", String.format("%.2f$", runningBalance)});
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -223,8 +276,8 @@ public class CategorieFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxdescription;
+    private javax.swing.JButton btnfiltrer;
     private javax.swing.JButton btnretour;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
