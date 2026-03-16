@@ -16,7 +16,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import modele.RegistreTransaction;
-import modele.releverimprimer;
+import utils.releverimprimer;
 import javax.swing.JFileChooser;
 import java.io.File;
 

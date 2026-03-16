@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package modele;
+package utils;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -19,6 +19,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import modele.Transaction;
 
 
 /**
@@ -51,9 +52,9 @@ public class releverimprimer extends relever implements imprimer {
         
     }
 
-    // ====================================================================
+    
     // Implémentation des méthodes ABSTRAITES de relever
-    // ====================================================================
+    
 
     /**
      * Imprime le relevé directement.
@@ -63,9 +64,9 @@ public class releverimprimer extends relever implements imprimer {
         imprimerPDF(nomFichier);
     }
 
-    // ====================================================================
+    
     // Implémentation des méthodes de l'interface imprimer
-    // ====================================================================
+  
 
     /**
      * 
