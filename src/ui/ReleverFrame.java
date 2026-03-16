@@ -35,7 +35,6 @@ public class ReleverFrame extends javax.swing.JFrame {
         initComponents();
         this.listing = listing;
         populateTable();
-        calculateBalance();
         setTitle("Relevé Bancaire");
       
     }
@@ -47,10 +46,10 @@ public class ReleverFrame extends javax.swing.JFrame {
     for (modele.Transaction t : listing.getRegistre()) {
         double depot = 0.0;
         double retrait = 0.0;
-        if ("DEPOT".equals(t.getType())) {      // TOUT MAJUSCULES
+        if ("Depot".equals(t.getType())) {
             depot = t.getMontant();
             soldeCourant += depot;
-        } else if ("PAIEMENT".equals(t.getType())) {  // TOUT MAJUSCULES
+        } else if ("Paiement".equals(t.getType())) {
             retrait = t.getMontant();
             soldeCourant -= retrait;
         }
@@ -69,9 +68,9 @@ public class ReleverFrame extends javax.swing.JFrame {
        if (!listing.getRegistre().isEmpty()) {
         double soldeFinal = 0.0;
         for (modele.Transaction t : listing.getRegistre()) {
-            if ("DEPOT".equals(t.getType())) {
+            if ("Depot".equals(t.getType())) {
                 soldeFinal += t.getMontant();
-            } else if ("PAIEMENT".equals(t.getType())) {
+            } else if ("Paiement".equals(t.getType())) {
                 soldeFinal -= t.getMontant();
             }
         }

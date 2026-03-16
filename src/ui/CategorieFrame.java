@@ -68,7 +68,7 @@ public class CategorieFrame extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         boxdescription.setEditable(true);
-        boxdescription.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HydroQuebec", "Telephone Bell ", "Epecerie", "Loyer", "Transport ", "SAAQ", " " }));
+        boxdescription.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salaire", "HydroQuebec", "Telephone Bell ", "Epicerie", "Loyer", "Transport ", "SAAQ", "Revenu Canada", "Revenu Quebec", " " }));
         boxdescription.addActionListener(this::boxdescriptionActionPerformed);
 
         lbldescription.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
