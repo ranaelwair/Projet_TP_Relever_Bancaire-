@@ -37,17 +37,17 @@ public class DashbordFrame extends javax.swing.JFrame {
                 g.drawString("Aucune donnée", width / 2 - 50, height / 2);
                 return;
             }
-            int barWidth = 50;
+            int barWidth = 80;
             int barHeightDepot = (int) ((totalDepot / max) * (height - 60));
             int barHeightRetrait = (int) ((totalRetrait / max) * (height - 60));
             g.setColor(java.awt.Color.GREEN);
             g.fillRect(50, height - barHeightDepot - 30, barWidth, barHeightDepot);
             g.setColor(java.awt.Color.RED);
-            g.fillRect(150, height - barHeightRetrait - 30, barWidth, barHeightRetrait);
+            g.fillRect(250, height - barHeightRetrait - 30, barWidth, barHeightRetrait);
             g.setColor(java.awt.Color.BLACK);
-            g.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
+            g.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
             g.drawString("Dépôts: " + String.format("%.2f$", totalDepot), 10, height - 10);
-            g.drawString("Retraits: " + String.format("%.2f$", totalRetrait), 150, height - 10);
+            g.drawString("Retraits: " + String.format("%.2f$", totalRetrait), 250, height - 10);
             g.drawString("Solde: " + String.format("%.2f$", solde), width / 2 - 50, 20);
         }
     }
@@ -72,7 +72,7 @@ public class DashbordFrame extends javax.swing.JFrame {
                 totalDepot += t.getMontant();
                 solde += t.getMontant();
                 model.addRow(new Object[]{t.getDate(), t.getDescription(), String.format("%.2f$", t.getMontant()), t.getType()});
-            } else if ("Paiement".equals(t.getType().trim())) {
+            } else if ("Retrait".equals(t.getType().trim())) {
                 totalRetrait += t.getMontant();
                 solde -= t.getMontant();
                 model.addRow(new Object[]{t.getDate(), t.getDescription(), String.format("%.2f$", t.getMontant()), t.getType()});
@@ -219,7 +219,7 @@ public class DashbordFrame extends javax.swing.JFrame {
         );
         statsPanelLayout.setVerticalGroup(
             statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

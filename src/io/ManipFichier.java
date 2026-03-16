@@ -27,12 +27,12 @@ public class ManipFichier {
             double depot = 0;
             double retrait = 0;
 
-            if (t.getType().equalsIgnoreCase("DEPOT")) {
+            if (t.getType().trim().equalsIgnoreCase("DEPOT")) {
                 depot = t.getMontant();
                 solde += depot;
-            } else if (t.getType().equalsIgnoreCase("PAIEMENT")) {
+            } else if (t.getType().trim().equalsIgnoreCase("RETRAIT")) {
                 retrait = t.getMontant();
-                solde = retrait - solde;
+                solde -= retrait;
             }
 
             writer.write(
@@ -76,7 +76,7 @@ public class ManipFichier {
                     type = "Depot";
                    } else if (retrait > 0) {  
                     montant = retrait;
-                   type = "Paiement";
+                   type = "Retrait";
                  } else {
                     montant = 0.0;
                       type = "RELEVE";   // ou "AUTRE"

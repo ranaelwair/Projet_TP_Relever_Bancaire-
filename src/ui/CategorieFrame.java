@@ -35,7 +35,7 @@ public class CategorieFrame extends javax.swing.JFrame {
             if ("Depot".equals(t.getType())) {
                 depot = t.getMontant();
                 runningBalance += depot;
-            } else if ("Paiement".equals(t.getType())) {
+            } else if ("Retrait".equals(t.getType())) {
                 retrait = t.getMontant();
                 runningBalance -= retrait;
             }
@@ -241,7 +241,7 @@ public class CategorieFrame extends javax.swing.JFrame {
                 if ("Depot".equals(t.getType())) {
                     depot = t.getMontant();
                     runningBalance += depot;
-                } else if ("Paiement".equals(t.getType())) {
+                } else if ("Retrait".equals(t.getType())) {
                     retrait = t.getMontant();
                     runningBalance -= retrait;
                 }
