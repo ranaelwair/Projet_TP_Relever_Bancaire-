@@ -32,7 +32,7 @@ public class ManipFichier {
                 solde += depot;
             } else if (t.getType().equalsIgnoreCase("PAIEMENT")) {
                 retrait = t.getMontant();
-                solde -= retrait;
+                solde = retrait - solde;
             }
 
             writer.write(
@@ -72,13 +72,15 @@ public class ManipFichier {
                 double montant;
                 String type;
                 if (depot > 0) {
-                    montant = depot;
-                    type = "DEPOT";
-                } else {
+                   montant = depot;
+                    type = "Depot";
+                   } else if (retrait > 0) {  
                     montant = retrait;
-                    type = "PAIEMENT";
-                }
-
+                   type = "Paiement";
+                 } else {
+                    montant = 0.0;
+                      type = "RELEVE";   // ou "AUTRE"
+                      }
                 Transaction t = new Transaction(date, description, montant,
                                                 mois, annee, jour, type, solde);
                 liste.add(t);

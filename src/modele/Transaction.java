@@ -16,19 +16,12 @@ public class Transaction {
     private int annee, jour;
     private String type;
     private double solde;
-
-    public Transaction(String date1, String description1, double montant1, String mois1, int annee1, int jour1, String type1, double solde) {
-        this.date = date1;
-        this.description = description1;
-        this.montant = montant1;
-        this.mois = mois1;
-        this.annee = annee1;
-        this.jour = jour1;
-        this.type = type1;
-        this.solde = solde;
+       
+ 
+    public Transaction(){
     }
     
-    public Transaction(String date, String description, double montant, String mois, int annee, int jour, String type) {
+    public Transaction(String date, String description, double montant, String mois, int annee, int jour, String type, double solde1) {
         this.date = date;
         this.description = description;
         this.montant = montant;

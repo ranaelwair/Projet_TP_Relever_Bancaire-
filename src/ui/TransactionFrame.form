@@ -241,14 +241,19 @@
           <Properties>
             <Property name="editable" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="7">
-                <StringItem index="0" value="HydroQuebec"/>
-                <StringItem index="1" value="Telephone Bell "/>
-                <StringItem index="2" value="Epecerie"/>
-                <StringItem index="3" value="Loyer"/>
-                <StringItem index="4" value="Transport "/>
-                <StringItem index="5" value="SAAQ"/>
-                <StringItem index="6" value=" "/>
+              <StringArray count="12">
+                <StringItem index="0" value="Salaire"/>
+                <StringItem index="1" value="HydroQuebec"/>
+                <StringItem index="2" value="Telephone Bell "/>
+                <StringItem index="3" value="Epicerie"/>
+                <StringItem index="4" value="Loyer"/>
+                <StringItem index="5" value="Transport "/>
+                <StringItem index="6" value="SAAQ"/>
+                <StringItem index="7" value="Revenu Canada"/>
+                <StringItem index="8" value="Revenu Quebec"/>
+                <StringItem index="9" value=" "/>
+                <StringItem index="10" value=" "/>
+                <StringItem index="11" value=" "/>
               </StringArray>
             </Property>
           </Properties>
@@ -440,8 +445,10 @@
         <Component class="javax.swing.JComboBox" name="boxdate3">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
+              <StringArray count="3">
                 <StringItem index="0" value="2026"/>
+                <StringItem index="1" value="2025"/>
+                <StringItem index="2" value="2024"/>
               </StringArray>
             </Property>
           </Properties>

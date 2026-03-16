@@ -139,7 +139,7 @@ public class TransactionFrame extends javax.swing.JFrame {
         txtmontant.setText("$");
 
         boxdescription.setEditable(true);
-        boxdescription.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HydroQuebec", "Telephone Bell ", "Epecerie", "Loyer", "Transport ", "SAAQ", " " }));
+        boxdescription.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salaire", "HydroQuebec", "Telephone Bell ", "Epicerie", "Loyer", "Transport ", "SAAQ", "Revenu Canada", "Revenu Quebec", " ", " ", " " }));
         boxdescription.addActionListener(this::boxdescriptionActionPerformed);
 
         jPanel4.setBackground(new java.awt.Color(199, 232, 205));
@@ -192,7 +192,7 @@ public class TransactionFrame extends javax.swing.JFrame {
         boxdate2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "janvier", " ", "février", " ", "mars", " ", "avril", " ", "mai", " ", "juin", " ", "juillet", " ", "août", " ", "septembre", " ", "octobre", " ", "novembre", " ", "décembre", " ", " " }));
         boxdate2.addActionListener(this::boxdate2ActionPerformed);
 
-        boxdate3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2026" }));
+        boxdate3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2026", "2025", "2024" }));
         boxdate3.addActionListener(this::boxdate3ActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -292,7 +292,7 @@ public class TransactionFrame extends javax.swing.JFrame {
        
 
         // Créer Transaction
-        Transaction t = new Transaction(date, description, montant, mois, annee, jour, type);
+        Transaction t = new Transaction(date, description, montant, mois, annee, jour, type, solde);
         t.setDate(date);
         t.setDescription(description);
         t.setMontant(montant);
@@ -333,6 +333,13 @@ public class TransactionFrame extends javax.swing.JFrame {
 
     private void btnannulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnannulerActionPerformed
         // TODO add your handling code here:
+        boxdate1.setSelectedIndex(0);
+        boxdate2.setSelectedIndex(0);
+        boxdate3.setSelectedIndex(0);
+        boxdescription.setSelectedIndex(0);
+        if (boxtype != null) boxtype.setSelectedIndex(0);
+        txtmontant.setText("");
+        txtmontant.requestFocus();
     }//GEN-LAST:event_btnannulerActionPerformed
 
     /**

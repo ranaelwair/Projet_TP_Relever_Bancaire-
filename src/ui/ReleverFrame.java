@@ -41,27 +41,44 @@ public class ReleverFrame extends javax.swing.JFrame {
     }
     
     private void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // Clear existing rows
-        for (modele.Transaction t : listing.getRegistre()) {
-            double depot = 0.0;
-            double retrait = 0.0;
-            if ("Depot".equals(t.getType())) {
-                depot = t.getMontant();
-            } else if ("Paiement".equals(t.getType())) {
-                retrait = t.getMontant();
-            }
-            model.addRow(new Object[]{t.getDate(), t.getDescription(), depot > 0 ? depot : "", retrait > 0 ? retrait : "", String.format("%.2f$", t.getSolde())});
+      DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0);
+     double soldeCourant = 0.0; 
+    for (modele.Transaction t : listing.getRegistre()) {
+        double depot = 0.0;
+        double retrait = 0.0;
+        if ("DEPOT".equals(t.getType())) {      // TOUT MAJUSCULES
+            depot = t.getMontant();
+            soldeCourant += depot;
+        } else if ("PAIEMENT".equals(t.getType())) {  // TOUT MAJUSCULES
+            retrait = t.getMontant();
+            soldeCourant -= retrait;
         }
+        model.addRow(new Object[]{
+            t.getDate(), 
+            t.getDescription(), 
+            depot > 0 ? depot : "", 
+            retrait > 0 ? retrait : "", 
+            String.format("%.2f$", soldeCourant)
+        });
+    }
+     lblsolde2.setText(String.format("%.2f$", soldeCourant));
     }
 
     private void calculateBalance() {
-        if (!listing.getRegistre().isEmpty()) {
-            double balance = listing.getRegistre().get(listing.getRegistre().size() - 1).getSolde();
-            lblsolde2.setText(String.format("%.2f$", balance));
-        } else {
-            lblsolde2.setText("0.00$");
+       if (!listing.getRegistre().isEmpty()) {
+        double soldeFinal = 0.0;
+        for (modele.Transaction t : listing.getRegistre()) {
+            if ("DEPOT".equals(t.getType())) {
+                soldeFinal += t.getMontant();
+            } else if ("PAIEMENT".equals(t.getType())) {
+                soldeFinal -= t.getMontant();
+            }
         }
+        lblsolde2.setText(String.format("%.2f$", soldeFinal));
+    } else {
+        lblsolde2.setText("0.00$");
+    }
     }
 
    
