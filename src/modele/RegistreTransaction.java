@@ -30,6 +30,14 @@ public class RegistreTransaction {
     }
 
     public void ajouter(Transaction t) {
+        double previousSolde = registre.isEmpty() ? 0.0 : registre.get(registre.size() - 1).getSolde();
+        if ("Depot".equals(t.getType())) {
+            t.setSolde(previousSolde + t.getMontant());
+        } else if ("Paiement".equals(t.getType())) {
+            t.setSolde(previousSolde - t.getMontant());
+        } else {
+            t.setSolde(previousSolde); // For other types, no change
+        }
         registre.add(t);
     }
 }

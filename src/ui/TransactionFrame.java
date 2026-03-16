@@ -292,7 +292,7 @@ public class TransactionFrame extends javax.swing.JFrame {
        
 
         // Créer Transaction
-        Transaction t = new Transaction(date, description, montant, mois, annee, jour, type, solde);
+        Transaction t = new Transaction(date, description, montant, mois, annee, jour, type);
         t.setDate(date);
         t.setDescription(description);
         t.setMontant(montant);

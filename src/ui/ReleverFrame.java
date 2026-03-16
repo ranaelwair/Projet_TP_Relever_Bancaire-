@@ -43,31 +43,25 @@ public class ReleverFrame extends javax.swing.JFrame {
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0); // Clear existing rows
-        double runningBalance = 0.0;
         for (modele.Transaction t : listing.getRegistre()) {
             double depot = 0.0;
             double retrait = 0.0;
             if ("Depot".equals(t.getType())) {
                 depot = t.getMontant();
-                runningBalance += depot;
             } else if ("Paiement".equals(t.getType())) {
                 retrait = t.getMontant();
-                runningBalance -= retrait;
             }
-            model.addRow(new Object[]{t.getDate(), t.getDescription(), depot > 0 ? depot : "", retrait > 0 ? retrait : "", String.format("%.2f$", runningBalance)});
+            model.addRow(new Object[]{t.getDate(), t.getDescription(), depot > 0 ? depot : "", retrait > 0 ? retrait : "", String.format("%.2f$", t.getSolde())});
         }
     }
 
     private void calculateBalance() {
-        double balance = 0.0;
-        for (modele.Transaction t : listing.getRegistre()) {
-            if ("Depot".equals(t.getType())) {
-                balance += t.getMontant();
-            } else if ("Paiement".equals(t.getType())) {
-                balance -= t.getMontant();
-            }
+        if (!listing.getRegistre().isEmpty()) {
+            double balance = listing.getRegistre().get(listing.getRegistre().size() - 1).getSolde();
+            lblsolde2.setText(String.format("%.2f$", balance));
+        } else {
+            lblsolde2.setText("0.00$");
         }
-        lblsolde2.setText(String.format("%.2f$", balance));
     }
 
    
@@ -239,18 +233,18 @@ public class ReleverFrame extends javax.swing.JFrame {
         lblsolde2.setText("0.00$");
 
         lblsolde.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblsolde.setText("Solde :");
+        lblsolde.setText("Solde de relever :");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblsolde)
+                .addContainerGap()
+                .addComponent(lblsolde, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblsolde2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(293, 293, 293)
+                .addComponent(lblsolde2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnretour)
                 .addGap(22, 22, 22))
         );

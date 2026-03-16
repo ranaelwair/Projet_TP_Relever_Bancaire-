@@ -6,6 +6,7 @@ package control;
 
 import ui.AuthFrame;
 import modele.RegistreTransaction;
+import io.ManipFichier;
 
 /**
  *
@@ -33,7 +34,8 @@ public class Main {
 
 
         /* Create and display the form */
-        RegistreTransaction listing = new RegistreTransaction();
+        RegistreTransaction listing = RegistreTransaction.getInstance();
+        ManipFichier.charger(listing.getRegistre());
         java.awt.EventQueue.invokeLater(() -> new AuthFrame(listing).setVisible(true));
     }
 }
