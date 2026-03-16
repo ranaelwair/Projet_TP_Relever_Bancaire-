@@ -28,6 +28,7 @@ public class TransactionFrame extends javax.swing.JFrame {
     private RegistreTransaction listing;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TransactionFrame.class.getName());
+    private double solde;
 
     /**
      * Creates new form TransactionFrame
@@ -288,9 +289,10 @@ public class TransactionFrame extends javax.swing.JFrame {
         String description = (String) boxdescription.getSelectedItem();
         double montant = Double.parseDouble(txtmontant.getText().trim());
         String type = (String) boxtype.getSelectedItem();  // Séparé de description !
+       
 
         // Créer Transaction
-        Transaction t = new Transaction();
+        Transaction t = new Transaction(date, description, montant, mois, annee, jour, type, solde);
         t.setDate(date);
         t.setDescription(description);
         t.setMontant(montant);

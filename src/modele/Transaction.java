@@ -16,7 +16,7 @@ public class Transaction {
     private int annee, jour;
     private String type;
 
-    public Transaction() {
+    public Transaction(String date1, String description1, double montant1, String mois1, int annee1, int jour1, String type1, double solde) {
     }
     
     public Transaction(String date, String description, double montant, String mois, int annee, int jour, String type) {
