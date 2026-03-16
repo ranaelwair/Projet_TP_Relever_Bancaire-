@@ -5,18 +5,7 @@
 package ui;
 
 import io.ManipFichier;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import modele.RegistreTransaction;
 import modele.Transaction;
 
@@ -304,7 +293,7 @@ public class TransactionFrame extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this, "Transaction ajoutée : " + date, "Succès", JOptionPane.INFORMATION_MESSAGE);
 
-        // Reset CORRECT (pas txtdate qui n'existe pas)
+        
         boxdate1.setSelectedIndex(0);
         boxdate2.setSelectedIndex(0);
         boxdate3.setSelectedIndex(0);

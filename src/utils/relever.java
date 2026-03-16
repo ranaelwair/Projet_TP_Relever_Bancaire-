@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import modele.Transaction;
 
 /**
- * Classe abstraite représentant un relevé bancaire.
- * Contient les informations de base d'un relevé et déclare les
- * opérations abstraites que toute sous-classe doit implémenter.
+
  *
  * @author ranae
  */
@@ -19,7 +17,7 @@ public abstract class relever {
     // ---- Attributs communs à tout relevé bancaire ----
     protected String numeroCompte;
     protected String titulaire;
-    protected String periode;          // ex. "Mars 2025"
+    protected String periode;         
     protected double soldeInitial;
     protected double soldeFinal;
     protected ArrayList<Transaction> transactions;

@@ -6,7 +6,6 @@ package utils;
 
 import java.util.ArrayList;
 import modele.Transaction;
-import modele.Transaction;
 
 /**
  * Interface définissant le contrat pour l'impression et la génération de PDF
