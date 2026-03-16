@@ -16,7 +16,10 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import modele.RegistreTransaction;
-import utils.PDFgenerateur;
+import modele.releverimprimer;
+import javax.swing.JFileChooser;
+import java.io.File;
+
 
 /**
  *
@@ -100,13 +103,13 @@ public class ReleverFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         panel = new javax.swing.JPanel();
-        btnTelecharger = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnsauvgarder = new javax.swing.JButton();
+        btnTelecharger = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btnretour = new javax.swing.JButton();
         lblsolde2 = new javax.swing.JLabel();
@@ -139,11 +142,6 @@ public class ReleverFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panel.setBackground(new java.awt.Color(221, 255, 252));
-
-        btnTelecharger.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnTelecharger.setForeground(new java.awt.Color(0, 0, 255));
-        btnTelecharger.setText("Télécharger PDF");
-        btnTelecharger.addActionListener(this::btnTelechargerActionPerformed);
 
         jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -213,6 +211,11 @@ public class ReleverFrame extends javax.swing.JFrame {
         btnsauvgarder.setText("Sauvgarder");
         btnsauvgarder.addActionListener(this::btnsauvgarderActionPerformed);
 
+        btnTelecharger.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTelecharger.setForeground(new java.awt.Color(255, 0, 0));
+        btnTelecharger.setText("Imprimer ");
+        btnTelecharger.addActionListener(this::btnTelechargerActionPerformed);
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -225,12 +228,11 @@ public class ReleverFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE)
                         .addGap(14, 14, 14))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                        .addGap(0, 689, Short.MAX_VALUE)
-                        .addComponent(btnTelecharger)
-                        .addGap(22, 22, 22))
-                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(0, 617, Short.MAX_VALUE)
+                        .addComponent(btnTelecharger, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnsauvgarder, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,8 +240,8 @@ public class ReleverFrame extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTelecharger)
-                    .addComponent(btnsauvgarder))
+                    .addComponent(btnsauvgarder)
+                    .addComponent(btnTelecharger))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(45, Short.MAX_VALUE))
@@ -314,35 +316,21 @@ public class ReleverFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnsauvgarderActionPerformed
 
     private void btnTelechargerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelechargerActionPerformed
-        // TODO add your handling code here:
-       // PDFgenerateur.genererPDF(listing.getRegistre(), "releve.pdf");
-       // javax.swing.JOptionPane.showMessageDialog(this, "PDF généré: releve.pdf");
-    }//GEN-LAST:event_btnTelechargerActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-   /* public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-      /*  try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Enregistrer le PDF");
+        fileChooser.setSelectedFile(new File("relever.pdf"));
+        int userSelection = fileChooser.showSaveDialog(this);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            try {
+                releverimprimer printer = new releverimprimer();
+                printer.genererPDF(listing.getRegistre(), fileToSave.getAbsolutePath());
+                javax.swing.JOptionPane.showMessageDialog(this, "PDF enregistré avec succès!");
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Erreur lors de l'enregistrement du PDF: " + e.getMessage());
             }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-     /*   java.awt.EventQueue.invokeLater(() -> new ReleverFrame(listing).setVisible(true));
-    }*/
+    }//GEN-LAST:event_btnTelechargerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTelecharger;
