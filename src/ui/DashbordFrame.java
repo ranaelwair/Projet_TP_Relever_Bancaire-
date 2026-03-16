@@ -6,8 +6,10 @@ package ui;
 
 
 import modele.RegistreTransaction;
-
- 
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.Component;
+import java.awt.Font;
 
 
 /**
@@ -20,21 +22,65 @@ import modele.RegistreTransaction;
 public class DashbordFrame extends javax.swing.JFrame {
        private  RegistreTransaction listing;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashbordFrame.class.getName());
+    private double totalDepot = 0.0;
+    private double totalRetrait = 0.0;
+    private double solde = 0.0;
+   
+    private class ChartPanel extends javax.swing.JPanel {
+        @Override
+        protected void paintComponent(java.awt.Graphics g) {
+            super.paintComponent(g);
+            int width = getWidth();
+            int height = getHeight();
+            double max = Math.max(totalDepot, totalRetrait);
+            if (max == 0) {
+                g.drawString("Aucune donnée", width / 2 - 50, height / 2);
+                return;
+            }
+            int barWidth = 50;
+            int barHeightDepot = (int) ((totalDepot / max) * (height - 60));
+            int barHeightRetrait = (int) ((totalRetrait / max) * (height - 60));
+            g.setColor(java.awt.Color.GREEN);
+            g.fillRect(50, height - barHeightDepot - 30, barWidth, barHeightDepot);
+            g.setColor(java.awt.Color.RED);
+            g.fillRect(150, height - barHeightRetrait - 30, barWidth, barHeightRetrait);
+            g.setColor(java.awt.Color.BLACK);
+            g.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
+            g.drawString("Dépôts: " + String.format("%.2f$", totalDepot), 10, height - 10);
+            g.drawString("Retraits: " + String.format("%.2f$", totalRetrait), 150, height - 10);
+            g.drawString("Solde: " + String.format("%.2f$", solde), width / 2 - 50, 20);
+        }
+    }
    
     public DashbordFrame(RegistreTransaction listing) {
         initComponents();
         this.listing = listing;
         setTitle("Tableau de bord");
-           
-               
+        jTable1.setDefaultRenderer(Object.class, new ColorRenderer());
+        updateStats();
     }
      
     
-    // ... RESTE DU CODE IDENTIQUE (initComponents, main, variables)
-
-
-
-
+    private void updateStats() {
+        totalDepot = 0.0;
+        totalRetrait = 0.0;
+        solde = 0.0;
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        for (modele.Transaction t : listing.getRegistre()) {
+            if ("Depot".equals(t.getType())) {
+                totalDepot += t.getMontant();
+                solde += t.getMontant();
+                model.addRow(new Object[]{t.getDate(), t.getDescription(), String.format("%.2f$", t.getMontant()), t.getType()});
+            } else if ("Paiement".equals(t.getType().trim())) {
+                totalRetrait += t.getMontant();
+                solde -= t.getMontant();
+                model.addRow(new Object[]{t.getDate(), t.getDescription(), String.format("%.2f$", t.getMontant()), t.getType()});
+            }
+        }
+        statsPanel.repaint();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,6 +107,10 @@ public class DashbordFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnactualiser = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        statsPanel = new ChartPanel();
+        statsPanel.setBackground(new java.awt.Color(221, 255, 252));
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jMenu1.setText("jMenu1");
 
@@ -159,6 +209,29 @@ public class DashbordFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(34, 88, 171));
         jLabel2.setText("Tableau de bord ");
 
+        statsPanel.setBackground(new java.awt.Color(221, 255, 252));
+
+        javax.swing.GroupLayout statsPanelLayout = new javax.swing.GroupLayout(statsPanel);
+        statsPanel.setLayout(statsPanelLayout);
+        statsPanelLayout.setHorizontalGroup(
+            statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        statsPanelLayout.setVerticalGroup(
+            statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date", "Description", "Montant", "Type"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -171,6 +244,14 @@ public class DashbordFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnactualiser, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(statsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,6 +260,10 @@ public class DashbordFrame extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(8, 8, 8)
                 .addComponent(btnactualiser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(statsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -206,7 +291,7 @@ public class DashbordFrame extends javax.swing.JFrame {
 
     private void btnactualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualiserActionPerformed
         // TODO add your handling code here:
-        
+        updateStats();
     }//GEN-LAST:event_btnactualiserActionPerformed
 
     private void btnquitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnquitterActionPerformed
@@ -276,6 +361,36 @@ public class DashbordFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel statsPanel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
+    private class ColorRenderer extends DefaultTableCellRenderer {
+        @Override
+        public Component getTableCellRendererComponent(javax.swing.JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            String description = (String) table.getValueAt(row, 1); // Description column
+            if (description != null) {
+                if (description.contains("HydroQuebec")) {
+                    c.setBackground(java.awt.Color.CYAN);
+                } else if (description.contains("Telephone Bell")) {
+                    c.setBackground(java.awt.Color.YELLOW);
+                } else if (description.contains("Epicerie")) {
+                    c.setBackground(java.awt.Color.GREEN);
+                } else if (description.contains("Loyer")) {
+                    c.setBackground(java.awt.Color.ORANGE);
+                } else if (description.contains("Transport")) {
+                    c.setBackground(java.awt.Color.PINK);
+                } else if (description.contains("SAAQ")) {
+                    c.setBackground(java.awt.Color.MAGENTA);
+                } else if (description.contains("Revenu Canada") || description.contains("Revenu Quebec")) {
+                    c.setBackground(java.awt.Color.BLUE);
+                } else {
+                    c.setBackground(java.awt.Color.WHITE);
+                }
+            }
+            return c;
+        }
+    }
 }

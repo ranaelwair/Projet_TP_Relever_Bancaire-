@@ -4,6 +4,7 @@
  */
 package ui;
 
+import io.ManipFichier;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -15,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import modele.RegistreTransaction;
+import utils.PDFgenerateur;
 
 /**
  *
@@ -139,6 +141,7 @@ public class ReleverFrame extends javax.swing.JFrame {
         btnTelecharger.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTelecharger.setForeground(new java.awt.Color(0, 0, 255));
         btnTelecharger.setText("Télécharger PDF");
+        btnTelecharger.addActionListener(this::btnTelechargerActionPerformed);
 
         jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -304,7 +307,15 @@ public class ReleverFrame extends javax.swing.JFrame {
 
     private void btnsauvgarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsauvgarderActionPerformed
         // TODO add your handling code here:
+        ManipFichier.sauvegarder(listing.getRegistre());
+        javax.swing.JOptionPane.showMessageDialog(this, "Données sauvegardées avec succès!");
     }//GEN-LAST:event_btnsauvgarderActionPerformed
+
+    private void btnTelechargerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelechargerActionPerformed
+        // TODO add your handling code here:
+       /* PDFgenerateur.genererPDF(listing.getRegistre(), "releve.pdf");
+        javax.swing.JOptionPane.showMessageDialog(this, "PDF généré: releve.pdf");*/
+    }//GEN-LAST:event_btnTelechargerActionPerformed
 
     /**
      * @param args the command line arguments

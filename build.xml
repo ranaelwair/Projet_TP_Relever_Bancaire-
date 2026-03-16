@@ -70,4 +70,11 @@
     nbproject/build-impl.xml file. 
 
     -->
+    <path id="classpath">
+        <pathelement location="lib/itextpdf-5.5.13.3.jar"/>
+        <pathelement path="${run.classpath}"/>
+    </path>
+    <target name="-post-init">
+        <property name="run.classpath" refid="classpath"/>
+    </target>
 </project>

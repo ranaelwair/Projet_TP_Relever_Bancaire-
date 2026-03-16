@@ -68,7 +68,7 @@ public class CategorieFrame extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         boxdescription.setEditable(true);
-        boxdescription.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salaire", "HydroQuebec", "Telephone Bell ", "Epicerie", "Loyer", "Transport ", "SAAQ", "Revenu Canada", "Revenu Quebec", " " }));
+        boxdescription.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tout les categories", "Salaire", "HydroQuebec", "Telephone Bell", "Epicerie", "Loyer", "Transport", "SAAQ", "Revenu Canada", "Revenu Quebec", "" }));
         boxdescription.addActionListener(this::boxdescriptionActionPerformed);
 
         lbldescription.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -109,7 +109,7 @@ public class CategorieFrame extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(173, Short.MAX_VALUE)
+                .addContainerGap(175, Short.MAX_VALUE)
                 .addComponent(lblcategorie)
                 .addGap(163, 163, 163))
         );
@@ -167,9 +167,9 @@ public class CategorieFrame extends javax.swing.JFrame {
                 .addComponent(lbldescription, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(boxdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(137, 137, 137)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnfiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(44, 44, 44))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(24, 24, 24)
