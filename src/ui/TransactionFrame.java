@@ -5,6 +5,7 @@
 package ui;
 
 import io.ManipFichier;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modele.RegistreTransaction;
 import modele.Transaction;
